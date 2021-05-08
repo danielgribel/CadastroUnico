@@ -9,5 +9,5 @@ https://aplicacoes.mds.gov.br/sagi/portal/index.php?grupo=212.
 **Scope and objective.** This notebook analyzes the data related to the families only (more than 4M entries), even though we will examine it together with the individuals' dataset in a future moment. The main goal of this notebook is to provide an overall view of the dataset, indicating the most prominent findings through data visualization and basic statistics. Therefore, this notebook can be used as the first step in a more detailed data analysis.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/4787247/117556139-a865da00-b033-11eb-947c-471d97422a04.png" width="1000" height="360">
+<img src="https://user-images.githubusercontent.com/4787247/117556139-a865da00-b033-11eb-947c-471d97422a04.png" width="1000" height="340">
 </p>
