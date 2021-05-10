@@ -415,76 +415,67 @@ freq_escoa_sanitario <- data.frame(table(df$cod_escoa_sanitario_domic_fam))
 max_y_material <- 4000000
 break_y <- 1000000
 
+# Add breaklines for axis text formatting
+levels(freq_material_piso$Var1) <- gsub(" ", "\n", levels(freq_material_piso$Var1))
+levels(freq_material_piso$Var1) <- gsub("lajota\nou", "lajota ou", levels(freq_material_piso$Var1))
+levels(freq_material_parede$Var1) <- gsub(" ", "\n", levels(freq_material_parede$Var1))
+
 # Plot of the distribution of families according to the type of material on the floor
-plt_material_piso <- ggplot(freq_material_piso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) + 
-    geom_bar(stat = "identity") +
+plt_material_piso <- ggplot(freq_material_piso,
+                            aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) + 
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.65, 0.8),
-        legend.background = element_rect(fill = "transparent", size = 0.3, linetype = "solid")) +
+    theme(legend.position = "none") +
     scale_fill_viridis_d(option = "magma") +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
     ylab("# Familias") +
-    labs(fill = "Material do piso") +
+    xlab("Material do piso") +
     scale_y_continuous(limits = c(0, max_y_material), breaks = seq(0, max_y_material, break_y))
 
 # Plot of the distribution of families according to the type of material on the wall
 plt_material_parede <- ggplot(freq_material_parede, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) + 
-    geom_bar(stat = "identity") +
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.62, 0.78),
-        legend.background = element_rect(fill = "transparent", size = 0.3, linetype = "solid")) +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
+    theme(legend.position = "none") +
     ylab("") +
-    labs(fill = "Material das paredes") +
-    scale_y_continuous(limits = c(0, max_y_material), breaks = seq(0, max_y_material, break_y)) +
-    scale_fill_viridis_d(option = "magma")
-
+    xlab("Material da parede") +
+    scale_y_continuous(limits = c(0, max_y_material), breaks = seq(0, max_y_material, break_y))
+    
 # Display plots side-by-side
-options(repr.plot.width = 12, repr.plot.height = 5)
+options(repr.plot.width = 17, repr.plot.height = 6)
 grid.arrange(plt_material_piso, plt_material_parede, ncol = 2)
 
 # Vertical bound of the plot
 max_y <- 5000000
 break_y <- 1000000
 
+# Add breaklines for axis text formatting
+levels(freq_abastecimento_agua$Var1) <- gsub(" ", "\n", levels(freq_abastecimento_agua$Var1))
+levels(freq_destino_lixo$Var1) <- gsub(" ", "\n", levels(freq_destino_lixo$Var1))
+levels(freq_iluminacao$Var1) <- c('Outro\n\n', 'Eletrica\n\n')
+levels(freq_escoa_sanitario$Var1) <- gsub(" ", "\n", levels(freq_escoa_sanitario$Var1))
+levels(freq_escoa_sanitario$Var1) <- gsub("Vala\na", "Vala a", levels(freq_escoa_sanitario$Var1))
+levels(freq_escoa_sanitario$Var1) <- gsub("ou\nmar", "ou mar", levels(freq_escoa_sanitario$Var1))
+
 # Plot of the distribution of families according to the form of water supply
 plt_abastecimento_agua <- ggplot(freq_abastecimento_agua, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) + 
-    geom_bar(stat = "identity") +
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.65, 0.8),
-        legend.background = element_rect(fill = "transparent", size = 0.3, linetype = "solid")) +
-    scale_fill_viridis_d(option = "magma") +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
+    theme(legend.position = "none") +
     ylab("# Familias") +
-    labs(fill = "Abastecimento de agua") +
+    xlab("Abastecimento de agua") +
     scale_y_continuous(limits = c(0, max_y), breaks = seq(0, max_y, break_y))
 
 # Plot of the distribution of families according to the form of garbage collection
 plt_destino_lixo <- ggplot(freq_destino_lixo, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) + 
-    geom_bar(stat = "identity") +
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.65, 0.8),
-        legend.background = element_rect(fill = "transparent", size = 0.2, linetype = "solid")) +
-    scale_fill_viridis_d(option = "magma") +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
+    theme(legend.position = "none") +
     ylab("# Familias") +
-    labs(fill = "Destino do lixo") +
+    xlab("Destino do lixo") +
     scale_y_continuous(limits = c(0, max_y), breaks = seq(0, max_y, break_y))
 
 # Plot of the distribution of families according to eletricity supply (yes or no)
@@ -492,38 +483,26 @@ plt_iluminacao <- ggplot(freq_iluminacao, aes(
                     x = reorder(Var1, -Freq),
                     y = Freq,
                     fill = factor(reorder(Var1, Freq), levels = 0:1, labels = c('Outro', 'Eletrica')))) +
-    geom_bar(stat = "identity") +
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.8, 0.85),
-        legend.background = element_rect(fill = "transparent", size = 0.2, linetype = "solid")) +
-    scale_fill_viridis_d() +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
+    theme(legend.position = "none") +
     ylab("") +
-    labs(fill = "Iluminacao") +
+    xlab("Iluminacao") +
     scale_y_continuous(limits = c(0, max_y), breaks = seq(0, max_y, break_y))
 
 # Plot of the distribution of families according to the form of sanitary outflow
 plt_escoa_sanitario <- ggplot(freq_escoa_sanitario, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
-    geom_bar(stat = "identity") +
+    geom_bar(stat = "identity", width = 0.5, fill = "grey70") +
     theme_bw() +
     mytheme +
-    theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        legend.position = c(0.7, 0.75),
-        legend.background = element_rect(fill = "transparent", size = 0.2, linetype = "solid")) +
-    scale_fill_viridis_d(option = "magma") +
-    guides(fill = guide_legend(title.hjust = 1, label.position = "left", label.hjust = 1)) +
+    theme(legend.position = "none") +
     ylab("") +
-    labs(fill = "Escoamento sanitario") +
+    xlab("Escoamento sanitario") +
     scale_y_continuous(limits = c(0, max_y), breaks = seq(0, max_y, break_y))
 
 # Display plots in a 2x2 grid
-options(repr.plot.width = 12, repr.plot.height = 5)
+options(repr.plot.width = 16, repr.plot.height = 5)
 grid.arrange(plt_abastecimento_agua, plt_iluminacao, ncol = 2)
 grid.arrange(plt_destino_lixo, plt_escoa_sanitario, ncol = 2)
 
